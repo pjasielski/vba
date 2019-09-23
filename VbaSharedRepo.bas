@@ -27,6 +27,8 @@ End Function
 
 Function LastCol(StartCell As Range) As Long
     
+    Dim StartCol As Long
+    
     StartCol = StartCell.Column
 
     LastCol = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column
@@ -35,6 +37,8 @@ End Function
 
 
 Function DataCols(StartCell As Range) As Long
+
+    Dim StartCol As Long
 
     StartCol = StartCell.Column
 
@@ -48,6 +52,7 @@ Function SortDataVertically(StartCell As Range, TargetCell As Range) As Long
     Dim i As Long
     Dim nextcol As Long
     Dim nextrow As Long
+    Dim StartRow As Long
 
     StartRow = StartCell.Row
     nextcol = 0
@@ -74,6 +79,7 @@ Function SortDataHorizontally(StartCell As Range, TargetCell As Range) As Long
     Dim i As Long
     Dim nextcol As Long
     Dim nextrow As Long
+    Dim StartRow As Long
 
     StartRow = StartCell.Row
     nextcol = 0
