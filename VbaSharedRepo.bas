@@ -4,96 +4,96 @@ Attribute VB_Name = "VbaSharedRepo"
 
 
 Function LastRow(StartCell As Range) As Long
-'Get the number of last filled row
-Dim StartRow As Long
+    'Get the number of last filled row
+    Dim StartRow As Long
 
-StartRow = StartCell.Row
+    StartRow = StartCell.Row
 
-LastRow = StartCell.Offset(Rows.Count - StartRow, 0).End(xlUp).Row
+    LastRow = StartCell.Offset(Rows.Count - StartRow, 0).End(xlUp).Row
 
 End Function
 
 
 Function DataRows(StartCell As Range) As Long
-'Get the number of last filled row in data table
-Dim StartRow As Long
+    'Get the number of last filled row in data table
+    Dim StartRow As Long
 
-StartRow = StartCell.Row
+    StartRow = StartCell.Row
 
-DataRows = StartCell.Offset(Rows.Count - StartRow, 0).End(xlUp).Row - StartRow
+    DataRows = StartCell.Offset(Rows.Count - StartRow, 0).End(xlUp).Row - StartRow
 
 End Function
 
 
 Function LastCol(StartCell As Range)
-'LastCol = StartCell.End(xlToRight).Column
-StartCol = StartCell.Column
+    'LastCol = StartCell.End(xlToRight).Column
+    StartCol = StartCell.Column
 
-LastCol = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column
+    LastCol = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column
 
 End Function
 
 
 Function DataCols(StartCell As Range)
 
-StartCol = StartCell.Column
+    StartCol = StartCell.Column
 
-DataCols = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column - StartCol
+    DataCols = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column - StartCol
 
 End Function
 
 
 Function SortDataVertically(StartCell As Range, TargetCell As Range) As Long
 
-StartRow = StartCell.Row
+    StartRow = StartCell.Row
 
-Dim i As Long
-Dim nextcol As Long
-Dim nextrow As Long
+    Dim i As Long
+    Dim nextcol As Long
+    Dim nextrow As Long
 
-    nextcol = 0
-    nextrow = 1
+        nextcol = 0
+        nextrow = 1
 
-For i = StartRow - 1 To DataRows(StartCell)
-    If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
-            TargetCell.Offset(0, nextcol) = StartCell.Offset(i, 0)
-            nextcol = nextcol + 1
-            nextrow = 1
-    Else
-        TargetCell.Offset(nextrow, nextcol - 1) = StartCell.Offset(i, 0)
-        nextrow = nextrow + 1
-    End If
-Next i
+    For i = StartRow - 1 To DataRows(StartCell)
+        If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
+                TargetCell.Offset(0, nextcol) = StartCell.Offset(i, 0)
+                nextcol = nextcol + 1
+                nextrow = 1
+        Else
+            TargetCell.Offset(nextrow, nextcol - 1) = StartCell.Offset(i, 0)
+            nextrow = nextrow + 1
+        End If
+    Next i
 
-SortDataVertically = i
+    SortDataVertically = i
 
 End Function
 
 
 Function SortDataHorizontally(StartCell As Range, TargetCell As Range) As Long
 
-StartRow = StartCell.Row
+    StartRow = StartCell.Row
 
 
-Dim i As Long
-Dim nextcol As Long
-Dim nextrow As Long
+    Dim i As Long
+    Dim nextcol As Long
+    Dim nextrow As Long
 
-    nextcol = 0
-    nextrow = 0
+        nextcol = 0
+        nextrow = 0
 
-For i = StartRow - 1 To DataRows(StartCell)
-    If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
-            TargetCell.Offset(nextrow, 0) = StartCell.Offset(i, 0)
-            nextrow = nextrow + 1
-            nextcol = 1
-    Else
-        TargetCell.Offset(nextrow - 1, nextcol) = StartCell.Offset(i, 0)
-        nextcol = nextcol + 1
-    End If
-Next i
+    For i = StartRow - 1 To DataRows(StartCell)
+        If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
+                TargetCell.Offset(nextrow, 0) = StartCell.Offset(i, 0)
+                nextrow = nextrow + 1
+                nextcol = 1
+        Else
+            TargetCell.Offset(nextrow - 1, nextcol) = StartCell.Offset(i, 0)
+            nextcol = nextcol + 1
+        End If
+    Next i
 
-SortDataHorizontally = i
+    SortDataHorizontally = i
 
 End Function
 
