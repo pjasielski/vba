@@ -26,7 +26,7 @@ End Function
 
 
 Function LastCol(StartCell As Range)
-    'LastCol = StartCell.End(xlToRight).Column
+    
     StartCol = StartCell.Column
 
     LastCol = StartCell.Offset(0, Columns.Count - StartCol).End(xlToLeft).Column
@@ -45,14 +45,13 @@ End Function
 
 Function SortDataVertically(StartCell As Range, TargetCell As Range) As Long
 
-    StartRow = StartCell.Row
-
     Dim i As Long
     Dim nextcol As Long
     Dim nextrow As Long
 
-        nextcol = 0
-        nextrow = 1
+    StartRow = StartCell.Row
+    nextcol = 0
+    nextrow = 1
 
     For i = StartRow - 1 To DataRows(StartCell)
         If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
@@ -72,15 +71,13 @@ End Function
 
 Function SortDataHorizontally(StartCell As Range, TargetCell As Range) As Long
 
-    StartRow = StartCell.Row
-
-
     Dim i As Long
     Dim nextcol As Long
     Dim nextrow As Long
 
-        nextcol = 0
-        nextrow = 0
+    StartRow = StartCell.Row
+    nextcol = 0
+    nextrow = 0
 
     For i = StartRow - 1 To DataRows(StartCell)
         If IsNumeric(StartCell.Offset(i, 0)) = False And StartCell.Offset(i, 0) <> "" Then
@@ -100,7 +97,7 @@ End Function
 
 '========================
 
-Sub CombineArrays2(Arr1 As Variant, Arr2 As Variant)
+Sub CombineArrays(Arr1 As Variant, Arr2 As Variant)
 
     Dim d As Scripting.Dictionary
     Set d = New Scripting.Dictionary
