@@ -25,7 +25,7 @@ Function DataRows(StartCell As Range) As Long
 End Function
 
 
-Function LastCol(StartCell As Range)
+Function LastCol(StartCell As Range) As Long
     
     StartCol = StartCell.Column
 
@@ -34,7 +34,7 @@ Function LastCol(StartCell As Range)
 End Function
 
 
-Function DataCols(StartCell As Range)
+Function DataCols(StartCell As Range) As Long
 
     StartCol = StartCell.Column
 
